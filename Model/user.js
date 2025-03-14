@@ -10,6 +10,7 @@ _id :{
     password: {type: String, required: false},
     name: {type: String, required: false},
     phone: {type: String, required: false},
+    date: {type: String, required: false},
     address: {type: String, required: false},
     avatar: {type: String, default: ''},
     role: { type: String, required: true, default: 'user' },

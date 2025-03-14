@@ -5,6 +5,7 @@ const router = express.Router()
 router.post('/phone', async (req, res) => {
     try {
         const newProduct = req.body.data;
+        console.log(newProduct.listImages)
         const newPhone = new phone({  // Changed from `phone` to `newPhone`
             name: newProduct.name,
             info: newProduct.info,
@@ -20,11 +21,10 @@ router.post('/phone', async (req, res) => {
             Camera2:newProduct.Camera2,
             Jack:newProduct.Jack,
             Battery:newProduct.Battery,
-
             image: newProduct.image,
+            listImages : newProduct.listImages
         });
 
-        console.log(newProduct);
         const result = await newPhone.save();  // Use `newPhone` here
         res.send(result);
     } catch (e) {

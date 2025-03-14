@@ -32,7 +32,7 @@ const phone = new mongoose.Schema({
     },
     category:{
         type: String,
-        required: true
+        required: false
     },
     Sim:{
         type: String,
@@ -80,6 +80,10 @@ const phone = new mongoose.Schema({
     },
     image:{
         type:[colorForImg],
+        required: true
+    },
+    listImages:{
+        type: [String],
         required: true
     }
 

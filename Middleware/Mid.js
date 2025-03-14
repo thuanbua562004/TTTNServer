@@ -6,14 +6,34 @@ const client = new OAuth2Client("827764849335-u758u0v853vi007gpsrib752jnbfqtao.a
 const Middleware = async (req, res, next) => {
     try {
         // Danh sách URL không cần kiểm tra token
-        const listWhite = ["/user/login", "/user/register", "/", "/phone/phone", "/upload/uploadmultiple", "/chat/webhook"];
+        const listWhite = ["/user/login", "/user/register", "/", "/phone/phone", "/upload/uploadmultiple", "/chat/webhook","/reset/send-reset-password-link","/user/loginGG" ,"/category/category"];
         if (listWhite.includes(req.originalUrl)) {
+            return next();
+        }
+        if (req.originalUrl.startsWith("/reset-password")) {
             return next();
         }
         if (req.originalUrl.startsWith("/phone/phone/")) {
             return next();
         }
-
+        if (req.originalUrl.startsWith("/order/vnpay_return")) {
+            return next();
+        }
+        if (req.originalUrl.startsWith("/new")) {
+            return next();
+        }
+        if (req.originalUrl.startsWith("/history")) {
+            return next();
+        }
+        if (req.originalUrl.startsWith("/payvn")) {
+            return next();
+        }
+        if (req.originalUrl.startsWith("/comment")) {
+            return next();
+        }
+        if (req.originalUrl.startsWith("/pay")) {
+            return next();
+        }
         await new Promise(resolve => setTimeout(resolve, 1000));
 
         if (!req.headers.authorization) {
@@ -30,7 +50,6 @@ const Middleware = async (req, res, next) => {
 
         } else {
             const decoded = jwt.verify(token, process.env.JWT_SECRET || "shhhhh");
-            console.log("Local User:", decoded);
             req.user = decoded; 
         }
 
