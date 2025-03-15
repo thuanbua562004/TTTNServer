@@ -6,14 +6,14 @@ const phonemodel = require("../Model/phone");
 route.get('/history/:id', async (req, res) => {
     try {
         const id = req.params.id
-        console.log(id)
 
         if (id.length < 10) {
-            const resultHistory = await history.findOne({ phone: id })
+            const resultHistory = await history.find({ phone: id })
+            console.log(id)
 
             return res.status(200).send(resultHistory)
         }
-        const resultHistory = await history.findOne({ id: id })
+        const resultHistory = await history.find({ id: id })
         if (resultHistory) {
             return res.status(200).send(resultHistory)
         }
