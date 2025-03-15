@@ -9,7 +9,7 @@ router.post('/create_payment_momo', async function (req, res, next) {
     var secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz';
     var orderInfo = 'pay with MoMo';
     var partnerCode = 'MOMO';
-    var redirectUrl = 'http://localhost:3001/resultpayMomo/';
+    var redirectUrl = 'https://tttn-pn1v.onrender.com//resultpayMomo/';
     var ipnUrl = 'https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b';
     var requestType = "payWithMethod";
     var amount = req.body.amount;
