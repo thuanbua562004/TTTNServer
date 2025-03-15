@@ -54,7 +54,7 @@ router.post('/webhook', async (req, res) => {
             minPrice: Math.min(
                 ...product.image.flatMap(color => color.memory.map(mem => mem.price || Infinity))
             ),
-            detailUrl: `http://localhost:3001/product/${product._id}`
+            detailUrl: `https://tttn-pn1v.onrender.com/product/${product._id}`
         }));
     
     
@@ -81,7 +81,7 @@ router.post('/webhook', async (req, res) => {
             const geminiResponse = await callGeminiAPI(
                 `Nếu người dùng yêu cầu tư vấn về điện thoại, hãy cung cấp thông tin ngắn gọn về mẫu điện thoại đó.
                 Nếu người dùng muốn tìm sản phẩm, hãy tìm trong danh sách sản phẩm mà tôi đã cung cấp và gửi kèm đường link sau:
-                http://localhost:3001/product/'id'. 
+                https://tttn-pn1v.onrender.com/product/'id'. 
                 Nếu không thuộc hai trường hợp trên, hãy trả lời bằng thông tin ngắn gọn về điện thoại và thông báo rằng không có sản phẩm phù hợp.
               
                 Dưới đây là danh sách các điện thoại hiện có:
