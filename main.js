@@ -40,15 +40,7 @@ app.use('/reset', apiReset);
 app.use('/pay', apiMomo);
 app.use('/payvn', apiVnPay);
 
-// 🛠️ Serve React build folder
-app.use(express.static(path.join(__dirname, 'client', 'build')));
 
-// 🔥 Fix lỗi reload: Chuyển hướng mọi route không phải API về React
-app.get('*', (req, res) => {
-    if (!req.path.startsWith('/api/') && !req.path.startsWith('/img/')) {
-        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-    }
-});
 
 // Start server
 app.listen(port, () => {
