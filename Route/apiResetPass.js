@@ -45,7 +45,7 @@ router.post('/send-reset-password-link', async (req, res) => {
 /////gui mail khi dat hang thanh cong
 router.post('/cash-success', async (req, res) => {
   try {
-    const { email, id, toTal } = req.body;
+    const { email, id, total } = req.body;
 
     const checkEmail = await user.findOne({ email });
     if (!checkEmail) {
@@ -69,7 +69,7 @@ router.post('/cash-success', async (req, res) => {
         <p>Thông tin đơn hàng của bạn:</p>
         <ul>
           <li><strong>Mã đơn hàng:</strong> ${id}</li>
-          <li><strong>Tổng tiền:</strong> ${toTal} VNĐ</li>
+          <li><strong>Tổng tiền:</strong> ${total} VNĐ</li>
         </ul>
         <p>Chúng tôi sẽ sớm giao hàng cho bạn. Cảm ơn bạn đã tin tưởng và ủng hộ!</p>
         <p>Trân trọng,</p>
