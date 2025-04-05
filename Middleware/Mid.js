@@ -10,7 +10,7 @@ const Middleware = async (req, res, next) => {
         if (listWhite.includes(req.originalUrl)) {
             return next();
         }
-        if (req.originalUrl.startsWith("/reset-password")) {
+        if (req.originalUrl.startsWith("/reset")) {
             return next();
         }
         if (req.originalUrl.startsWith("/phone/phone/")) {
