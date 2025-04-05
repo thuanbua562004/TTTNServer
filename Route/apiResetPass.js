@@ -41,7 +41,7 @@ router.post('/send-reset-password-link', async (req, res) => {
     return res.status(200).json({ message: 'Liên kết đổi mật khẩu đã được gửi.' });
   } catch (error) {
     console.error('Lỗi khi gửi email:', error);
-    return res.status(500).json({ message: 'Có lỗi xảy ra, vui lòng thử lại.' });
+    return res.status(500).json({ message: 'Tài khoản chưa đăng kí!' });
   }
 });
 /////gui mail khi dat hang thanh cong
@@ -62,7 +62,7 @@ router.post('/cash-success', async (req, res) => {
       }
     });
     const mailOptions = {
-      from: 'your-email@gmail.com',
+      from: 'vanthuan562004@gmail.com',
       to: email,
       subject: 'Xác nhận đơn hàng thành công',
       html: `
@@ -110,7 +110,7 @@ router.post('/update-order-status', async (req, res) => {
 
     // Nội dung email
     const mailOptions = {
-      from: 'your-email@gmail.com',
+      from: 'vanthuan562004@gmail.com',
       to: email,
       subject: 'Cập nhật trạng thái đơn hàng',
       html: `
