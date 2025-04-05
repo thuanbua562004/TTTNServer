@@ -11,8 +11,8 @@ router.post('/send-reset-password-link', async (req, res) => {
   try {
     const email = req.body.email;
     const checkEmail = await user.findOne({email:email})
-    if (!checkEmail) {
-      return res.status(205).json({ message: 'Email chưa đăng kí tài khoản !!!' });
+    if (!checkEmail.password) {
+      return res.status(205).json({ message: 'Email chưa đăng kí tài khoản ! Hoặc đăng nhập bằng Google' });
     }
     const token = crypto.randomBytes(20).toString('hex');
     tokenStore.set(token, email); // Lưu token và email vào tokenStore
