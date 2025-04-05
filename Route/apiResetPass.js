@@ -16,7 +16,7 @@ router.post('/send-reset-password-link', async (req, res) => {
     }
     const token = crypto.randomBytes(20).toString('hex');
     tokenStore.set(token, email);
-    const resetLink = `http://localhost:3001/reset-password?token=${token}`;
+    const resetLink = `https://tttn-pn1v.onrender.com/reset-password?token=${token}`;
 
     const transporter = nodemailer.createTransport({  
       service: 'gmail',

@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 
 app.use('/img', express.static(path.join(__dirname, 'Img')));
 
-app.use(cors())
+app.use(cors('*'))
 app.use('*',Middleware)
 app.use('/phone',apiPhone)
 app.use('/chat',chatBot)
