@@ -15,7 +15,8 @@ router.post('/send-reset-password-link', async (req, res) => {
       return res.status(205).json({ message: 'Email chưa đăng kí tài khoản !!!' });
     }
     const token = crypto.randomBytes(20).toString('hex');
-    tokenStore.set(token, email);
+    tokenStore.set(token, email); // Lưu token và email vào tokenStore
+
     const resetLink = `https://tttn-pn1v.onrender.com/reset-password?token=${token}`;
 
     const transporter = nodemailer.createTransport({  
@@ -26,7 +27,7 @@ router.post('/send-reset-password-link', async (req, res) => {
     }
     });
     const mailOptions = {
-      from: 'your-email@gmail.com',
+      from: 'vanthuan562004@gmail.com',
       to: email,
       subject: 'Đổi mật khẩu của bạn',
       text: `Vui lòng nhấp vào liên kết sau để đổi mật khẩu: ${resetLink}`,
@@ -35,7 +36,8 @@ router.post('/send-reset-password-link', async (req, res) => {
     };
 
     // Gửi email
-    await transporter.sendMail(mailOptions);
+     const result = await transporter.sendMail(mailOptions);
+     console.log(result)
     return res.status(200).json({ message: 'Liên kết đổi mật khẩu đã được gửi.' });
   } catch (error) {
     console.error('Lỗi khi gửi email:', error);
@@ -134,16 +136,17 @@ router.post('/update-order-status', async (req, res) => {
 
 router.post('/reset-password', async (req, res) => {
   const { token, newPass } = req.body;
-  
+  console.log(tokenStore)
   try {
     if (tokenStore.has(token)) {
       const email = tokenStore.get(token); // Lấy email từ tokenStore
-      const user = await user.findOne({ 'details.email': email });
-      if (!user) {
+      let userData = await user.findOne({ 'email': email });
+      console.log(userData)
+      if (!userData.password) {
         return res.status(404).json({ message: 'Người dùng không tồn tại.' });
       }
-      user.details.password = newPass;
-      await user.save();
+      userData.password = newPass;
+      await userData.save();
       tokenStore.delete(token);
       return res.status(200).json({ message: 'Đổi mật khẩu thành công.' });
     } else {
